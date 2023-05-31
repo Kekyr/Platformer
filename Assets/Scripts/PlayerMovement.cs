@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private KeyCode _moveRightButton;
     [SerializeField] private KeyCode _jumpButton;
 
+    private const string Running = "Running";
+
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
@@ -58,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
         _moveDirection = moveDirection;
         _spriteRenderer.flipX = isFlip;
         _currentForce = _runForce;
-        _animator.SetBool("Run", true);
+        _animator.SetBool(Running, true);
     }
 
     private void Jump()
@@ -70,6 +72,6 @@ public class PlayerMovement : MonoBehaviour
     private void Idle()
     {
         _moveDirection = Vector3.zero;
-        _animator.SetBool("Run", false);
+        _animator.SetBool(Running, false);
     }
 }

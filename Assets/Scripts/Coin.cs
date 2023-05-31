@@ -3,19 +3,13 @@ using UnityEngine.Events;
 
 public class Coin : MonoBehaviour
 {
-    private UnityEvent _collected = new UnityEvent();
-
-    public event UnityAction Collected
-    {
-        add => _collected.AddListener(value);
-        remove => _collected.RemoveListener(value);
-    }
+    public event UnityAction Collected;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent<PlayerMovement>(out PlayerMovement playerMovement))
         {
-            _collected.Invoke();
+            Collected?.Invoke();
             Destroy(gameObject);
         }
     }
